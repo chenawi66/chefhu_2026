@@ -23,8 +23,6 @@ const seriesImages: Record<string, string> = {
 };
 
 export default function DishGrid({ dishes }: DishGridProps) {
-    const [searchTerm, setSearchTerm] = useState('');
-
     // Group dishes by Series (201A, 201B...)
     const groupedDishes = dishes.reduce((acc, dish) => {
         if (!acc[dish.series]) {
@@ -33,15 +31,6 @@ export default function DishGrid({ dishes }: DishGridProps) {
         acc[dish.series].push(dish);
         return acc;
     }, {} as Record<string, Dish[]>);
-
-    // Filter groups based on search
-    const filteredGroups = Object.entries(groupedDishes).filter(([series, groupDishes]) => {
-        const term = searchTerm.toLowerCase();
-        return (
-            series.toLowerCase().includes(term) ||
-            groupDishes.some(d => d.name.includes(term))
-        );
-    });
 
     return (
         <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto" id="menu">
@@ -56,24 +45,11 @@ export default function DishGrid({ dishes }: DishGridProps) {
                 </motion.h2>
                 <p className="text-gray-400 max-w-2xl mx-auto">
                     我們將依照每一次的練習主題，完整呈現該題組的 7 道經典料理。
-                    <br />預約時請確認當日供應的題組。
                 </p>
             </div>
 
-            {/* Search Bar */}
-            <div className="mb-12 max-w-md mx-auto relative group z-10">
-                <div className="absolute inset-0 bg-green-500 rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                <input
-                    type="text"
-                    placeholder="搜尋題組或菜名 (例如：201A, 黃魚)..."
-                    className="relative w-full bg-black/50 border border-white/10 rounded-lg px-6 py-4 text-white focus:outline-none focus:border-green-500 transition-all placeholder-gray-500"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-            </div>
-
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {filteredGroups.map(([series, groupDishes], i) => {
+                {Object.entries(groupedDishes).map(([series, groupDishes], i) => {
                     // Determine Image
                     const prefix = series.substring(0, 3);
                     const bgImage = seriesImages[prefix] || seriesImages['default'];
@@ -127,12 +103,6 @@ export default function DishGrid({ dishes }: DishGridProps) {
                     );
                 })}
             </div>
-
-            {filteredGroups.length === 0 && (
-                <div className="text-center text-gray-500 py-12">
-                    沒有找到符合的菜色題組。
-                </div>
-            )}
         </section>
     );
 }

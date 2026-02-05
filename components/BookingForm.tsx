@@ -90,7 +90,7 @@ export default function BookingForm() {
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">預約您的席位</h2>
-                    <p className="text-gray-400">參加乙級學徒練習會（可自備酒水，免開瓶費）</p>
+                    <p className="text-gray-400">參加乙級學徒練工坊（可自備酒水，免開瓶費）</p>
                 </div>
 
                 <div className="glass-card rounded-2xl p-6 md:p-10">
