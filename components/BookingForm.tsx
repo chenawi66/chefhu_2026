@@ -19,10 +19,7 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
     const [step, setStep] = useState(1);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-
-    useEffect(() => {
-        if (onSuccess) onSuccess(success);
-    }, [success, onSuccess]);
+    const [mounted, setMounted] = useState(false);
 
     const [formData, setFormData] = useState({
         name: '',
@@ -32,18 +29,24 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
     });
 
     useEffect(() => {
+        if (onSuccess) onSuccess(success);
+    }, [success, onSuccess]);
+
+    useEffect(() => {
+        setMounted(true);
         fetch('/api/slots')
             .then(res => res.json())
             .then(data => setSlots(data));
     }, []);
 
     useEffect(() => {
+        if (!mounted || (step === 1 && !success)) return;
         // Auto-scroll to form top on step change or success
         const section = document.getElementById('book');
         if (section) {
             section.scrollIntoView({ behavior: 'smooth' });
         }
-    }, [step, success]);
+    }, [step, success, mounted]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

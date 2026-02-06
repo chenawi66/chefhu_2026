@@ -3,16 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-interface Dish {
-    id: string;
-    name: string;
-    category: string;
-    series: string;
-}
-
-interface DishGridProps {
-    dishes: Dish[];
-}
+import { Dish, dishes } from '@/lib/dishes';
 
 // Images for different sets to maintain visual consistency
 const seriesImages: Record<string, string> = {
@@ -22,9 +13,9 @@ const seriesImages: Record<string, string> = {
     'default': 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80'
 };
 
-export default function DishGrid({ dishes }: DishGridProps) {
+export default function DishGrid({ dishes }: { dishes: Dish[] }) {
     // Group dishes by Series (201A, 201B...)
-    const groupedDishes = dishes.reduce((acc, dish) => {
+    const groupedDishes = dishes.reduce((acc: Record<string, Dish[]>, dish: Dish) => {
         if (!acc[dish.series]) {
             acc[dish.series] = [];
         }

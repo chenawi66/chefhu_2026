@@ -5,7 +5,7 @@ import Hero from '@/components/Hero';
 import DishGrid from '@/components/DishGrid';
 import BookingForm from '@/components/BookingForm';
 import FloatingCTA from '@/components/FloatingCTA';
-import { dishes } from '@/lib/data';
+import { dishes } from '@/lib/dishes';
 
 export default function Home() {
     const [isReserved, setIsReserved] = useState(false);
