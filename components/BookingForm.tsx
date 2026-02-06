@@ -253,13 +253,16 @@ export default function BookingForm() {
                                         <span className="text-white font-black">{selectedDate} / 18:00</span>
                                     </div>
                                     <div className="flex justify-between items-center border-t border-white/10 pt-8">
-                                        <span className="text-zinc-400 font-black tracking-widest">食材費合計</span>
+                                        <div className="space-y-1">
+                                            <span className="text-zinc-400 font-black tracking-widest block">食材費合計</span>
+                                            <span className="text-zinc-500 text-sm font-bold block">食材費 300/人</span>
+                                        </div>
                                         <div className="text-right">
                                             <span className="text-green-500 text-6xl font-black tracking-tighter">{formData.guests * 300}</span>
                                             <span className="text-green-500 text-2xl font-black ml-2">元</span>
                                         </div>
                                     </div>
-                                    <div className="text-lg text-zinc-500 space-y-4 border-t border-white/10 pt-8 font-bold italic">
+                                    <div className="text-lg text-zinc-500 space-y-4 border-t border-white/10 pt-8 font-bold">
                                         <p className="flex items-center gap-4"><span className="w-3 h-3 bg-green-500"></span> 可自備酒水，免收開瓶費，現場提供紅酒杯。</p>
                                         <p className="flex items-center gap-4"><span className="w-3 h-3 bg-green-500"></span> 菜色由胡主廚依題組隨機挑選練習。</p>
                                     </div>
