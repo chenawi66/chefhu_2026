@@ -33,8 +33,13 @@ export default function DishGrid({ dishes }: DishGridProps) {
     }, {} as Record<string, Dish[]>);
 
     return (
-        <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto" id="menu">
-            <div className="text-center mb-16">
+        <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto relative overflow-hidden" id="menu">
+            {/* Background Decorative Image */}
+            <div className="absolute top-0 right-0 w-1/3 h-1/3 opacity-10 pointer-events-none -z-10">
+                <img src="/images/prep.jpg" alt="Prep" className="w-full h-full object-cover rounded-full blur-2xl" />
+            </div>
+
+            <div className="text-center mb-16 relative">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -43,12 +48,12 @@ export default function DishGrid({ dishes }: DishGridProps) {
                 >
                     乙級檢定題組菜單
                 </motion.h2>
-                <p className="text-gray-400 max-w-2xl mx-auto">
-                    我們將依照每一次的練習主題，完整呈現該題組的 7 道經典料理。
+                <p className="text-gray-400 max-w-2xl mx-auto font-light tracking-wide italic">
+                    「一場關於匠心與美味的練習，在刀工與火候中追尋極致。」
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {Object.entries(groupedDishes).map(([series, groupDishes], i) => {
                     // Determine Image
                     const prefix = series.substring(0, 3);

@@ -9,7 +9,7 @@ export default function Hero() {
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 scale-105 animate-float"
                 style={{
-                    backgroundImage: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80")'
+                    backgroundImage: 'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url("/images/atmosphere.jpg")'
                 }}
             />
 

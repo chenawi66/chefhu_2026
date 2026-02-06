@@ -28,13 +28,17 @@ export interface DB {
 // Helper to generate Saturdays between two dates
 function generateSaturdays(startMonth: number, startYear: number, endMonth: number, endYear: number) {
     const dates = [];
+    const excludedDates = ['2026-03-28', '2026-04-04', '2026-05-23', '2026-05-30', '2026-06-06'];
     const start = new Date(startYear, startMonth - 1, 1);
     const end = new Date(endYear, endMonth, 0);
 
     let current = new Date(start);
     while (current <= end) {
         if (current.getDay() === 6) { // 6 = Saturday
-            dates.push(current.toISOString().split('T')[0]);
+            const dateStr = current.toISOString().split('T')[0];
+            if (!excludedDates.includes(dateStr)) {
+                dates.push(dateStr);
+            }
         }
         current.setDate(current.getDate() + 1);
     }

@@ -12,9 +12,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // Strict validation: Must be exactly 4 guests
-    if (guests !== 4) {
-      return NextResponse.json({ error: 'Strict rule: Group size must be exactly 4 people' }, { status: 400 });
+    // Validation: 4-6 guests
+    if (guests < 4 || guests > 6) {
+      return NextResponse.json({ error: 'Group size must be between 4 and 6 people' }, { status: 400 });
     }
 
     const db = getDB();

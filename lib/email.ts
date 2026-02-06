@@ -38,7 +38,7 @@ export async function sendEmailNotification(reservationDetails: any) {
         <p><strong>📅 日期：</strong> ${reservationDetails.date}</p>
         <p><strong>⏰ 時間：</strong> ${reservationDetails.time}</p>
         <p><strong>👥 人數：</strong> ${reservationDetails.guests} 人 (固定)</p>
-        <p><strong>💰 總收費：</strong> ${reservationDetails.guests * 350} 元 (食材費每人 350 元)</p>
+        <p><strong>💰 總收費：</strong> ${reservationDetails.guests * 300} 元 (食材費每人 300 元)</p>
         <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
         <p style="color: #666; font-size: 12px;">此郵件由乙級學徒練工坊系統自動發送。</p>
       </div>
