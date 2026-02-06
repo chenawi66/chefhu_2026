@@ -276,29 +276,5 @@ export default function BookingForm() {
                 </div>
             </div>
         </section>
-
-                                <div className="flex justify-between items-center pt-6">
-                                    <button
-                                        type="button"
-                                        onClick={() => setStep(1)}
-                                        className="text-gray-500 hover:text-white transition-colors tracking-widest font-light"
-                                    >
-                                        ← 返回
-                                    </button>
-                                    <button
-                                        type="submit"
-                                        disabled={loading}
-                                        className="px-12 py-4 bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-white font-bold rounded-full shadow-2xl disabled:opacity-50 transition-all transform hover:-translate-y-1 flex items-center gap-2"
-                                    >
-                                        {loading ? '記名中...' : '確認預約'}
-                                    </button>
-                                </div>
-                            </motion.form >
-                        )
-}
-                    </AnimatePresence >
-                </div >
-            </div >
-        </section >
     );
 }
