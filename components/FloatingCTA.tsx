@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function FloatingCTA() {
+export default function FloatingCTA({ hidden }: { hidden?: boolean }) {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ export default function FloatingCTA() {
 
     return (
         <AnimatePresence>
-            {isVisible && (
+            {isVisible && !hidden && (
                 <motion.div
                     initial={{ opacity: 0, y: 50, scale: 0.8 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}

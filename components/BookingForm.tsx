@@ -8,13 +8,21 @@ interface TimeSlot {
     times: string[];
 }
 
-export default function BookingForm() {
+interface BookingFormProps {
+    onSuccess?: (success: boolean) => void;
+}
+
+export default function BookingForm({ onSuccess }: BookingFormProps) {
     const [slots, setSlots] = useState<TimeSlot[]>([]);
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedTime, setSelectedTime] = useState('');
     const [step, setStep] = useState(1);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
+
+    useEffect(() => {
+        if (onSuccess) onSuccess(success);
+    }, [success, onSuccess]);
 
     const [formData, setFormData] = useState({
         name: '',
@@ -227,7 +235,7 @@ export default function BookingForm() {
                                         value={formData.relationship}
                                         onChange={e => setFormData({ ...formData, relationship: e.target.value })}
                                         className="w-full bg-zinc-800 p-6 border-2 border-white/10 focus:border-green-500 outline-none transition-all text-white text-lg md:text-2xl placeholder-zinc-600 font-bold rounded-none"
-                                        placeholder="如認識請填「常用稱呼」，若不認識請填「新朋友」"
+                                        placeholder="請填常用稱呼或新朋友"
                                     />
                                 </div>
 
