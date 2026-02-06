@@ -53,9 +53,8 @@ export default function DishGrid({ dishes }: DishGridProps) {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
+            <div className="grid grid-cols-1 gap-20 relative z-10 max-w-5xl mx-auto">
                 {Object.entries(groupedDishes).map(([series, groupDishes], i) => {
-                    // Determine Image
                     const prefix = series.substring(0, 3);
                     const bgImage = seriesImages[prefix] || seriesImages['default'];
 
@@ -66,43 +65,43 @@ export default function DishGrid({ dishes }: DishGridProps) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
-                            className="group relative overflow-hidden rounded-2xl bg-zinc-900 border border-white/10 hover:border-green-500/50 transition-all duration-500"
+                            className="group flex flex-col md:flex-row overflow-hidden bg-zinc-900 border border-white/10 hover:border-green-500/50 transition-all duration-500"
                         >
-                            {/* Card Header Image */}
-                            <div className="relative h-48 overflow-hidden">
-                                <div
-                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                                    style={{ backgroundImage: `url(${bgImage})` }}
+                            {/* Card Image - Clear and Direct */}
+                            <div className="w-full md:w-5/12 h-72 md:h-auto overflow-hidden relative">
+                                <img
+                                    src={bgImage}
+                                    alt={series}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent" />
-
-                                <div className="absolute bottom-4 left-6">
-                                    <span className="px-3 py-1 text-[10px] font-bold text-black bg-yellow-400 rounded-full mb-2 inline-block shadow-lg uppercase">
+                                <div className="absolute top-0 left-0">
+                                    <span className="px-6 py-2 text-xs font-black text-black bg-yellow-400 uppercase tracking-tighter">
                                         {groupDishes[0].category}
                                     </span>
-                                    <h3 className="text-3xl font-bold text-white shadow-black drop-shadow-lg tracking-widest">
-                                        {series} <span className="text-sm font-light opacity-60">題組</span>
-                                    </h3>
                                 </div>
                             </div>
 
-                            <div className="p-8">
-                                <ul className="space-y-4">
+                            {/* Content Area */}
+                            <div className="p-10 md:p-16 flex-grow flex flex-col justify-center">
+                                <div className="mb-10">
+                                    <h3 className="text-5xl font-black text-white tracking-widest leading-none mb-2">
+                                        {series}
+                                    </h3>
+                                    <div className="h-1 w-20 bg-green-500"></div>
+                                </div>
+                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
                                     {groupDishes.map((dish, idx) => (
-                                        <li key={dish.id} className="flex items-start gap-4 text-gray-300 group-hover:text-white transition-colors">
-                                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center text-[10px] text-green-400 mt-1">
+                                        <li key={dish.id} className="flex items-start gap-4">
+                                            <span className="flex-shrink-0 w-8 h-8 bg-green-500 flex items-center justify-center text-xs font-black text-black mt-1">
                                                 {idx + 1}
                                             </span>
-                                            <span className="text-lg md:text-xl tracking-wider py-0.5 border-b border-white/5 w-full block">
+                                            <span className="text-xl md:text-2xl font-bold text-gray-100 tracking-wide leading-snug">
                                                 {dish.name}
                                             </span>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
-
-                            {/* Decorative Corner */}
-                            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-white/5 to-transparent -mr-10 -mt-10 rounded-full blur-xl group-hover:bg-green-500/20 transition-all" />
                         </motion.div>
                     );
                 })}
