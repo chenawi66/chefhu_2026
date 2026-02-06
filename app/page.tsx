@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Hero from '@/components/Hero';
 import DishGrid from '@/components/DishGrid';
 import BookingForm from '@/components/BookingForm';
@@ -9,6 +9,11 @@ import { dishes } from '@/lib/dishes';
 
 export default function Home() {
     const [isReserved, setIsReserved] = useState(false);
+
+    useEffect(() => {
+        // Force scroll to top on initial load/refresh
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <main className="min-h-screen">
