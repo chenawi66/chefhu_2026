@@ -235,7 +235,7 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
                                         value={formData.relationship}
                                         onChange={e => setFormData({ ...formData, relationship: e.target.value })}
                                         className="w-full bg-zinc-800 p-6 border-2 border-white/10 focus:border-green-500 outline-none transition-all text-white text-lg md:text-2xl placeholder-zinc-600 font-bold rounded-none"
-                                        placeholder="請填常用稱呼或新朋友"
+                                        placeholder="請填常用稱呼或新朋友" // Updated placeholder text
                                     />
                                 </div>
 
