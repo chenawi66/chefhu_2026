@@ -253,9 +253,9 @@ export default function BookingForm() {
                                         <span className="text-white font-black">{selectedDate} / 18:00</span>
                                     </div>
                                     <div className="flex justify-between items-center border-t border-white/10 pt-8">
-                                        <div className="space-y-1">
-                                            <span className="text-zinc-400 font-black tracking-widest block">食材費合計</span>
-                                            <span className="text-zinc-500 text-sm font-bold block">食材費 300/人</span>
+                                        <div className="space-y-2">
+                                            <span className="text-zinc-400 font-black tracking-widest block text-2xl">食材費合計</span>
+                                            <span className="text-zinc-500 text-lg font-bold block">食材費 300/人</span>
                                         </div>
                                         <div className="text-right">
                                             <span className="text-green-500 text-6xl font-black tracking-tighter">{formData.guests * 300}</span>
