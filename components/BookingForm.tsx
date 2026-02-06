@@ -186,14 +186,14 @@ export default function BookingForm() {
                                         />
                                     </div>
                                     <div className="space-y-3">
-                                        <label className="text-sm text-gray-400 tracking-widest uppercase">手記 (電話)</label>
+                                        <label className="text-sm text-gray-400 tracking-widest uppercase">Line ID</label>
                                         <input
                                             required
-                                            type="tel"
+                                            type="text"
                                             value={formData.phone}
                                             onChange={e => setFormData({ ...formData, phone: e.target.value })}
                                             className="w-full glass-input p-4 rounded-xl border border-white/10 focus:border-green-500/50 outline-none transition-all"
-                                            placeholder="請輸入聯繫電話"
+                                            placeholder="請提供 Line ID 以便聯繫"
                                         />
                                     </div>
                                 </div>
@@ -206,12 +206,12 @@ export default function BookingForm() {
                                         value={formData.relationship}
                                         onChange={e => setFormData({ ...formData, relationship: e.target.value })}
                                         className="w-full glass-input p-4 rounded-xl border border-white/10 focus:border-green-500/50 outline-none transition-all"
-                                        placeholder="如認識請填常用稱呼，若不認識請填「新朋友」"
+                                        placeholder="會以 Line 進行預約確認與提供地址"
                                     />
                                 </div>
 
                                 <div className="space-y-3">
-                                    <label className="text-sm text-gray-400 tracking-widest uppercase">出席人數 ({formData.guests}位)</label>
+                                    <label className="text-sm text-gray-400 tracking-widest uppercase">出席人數 (4~6位)</label>
                                     <div className="flex items-center gap-6 p-6 bg-white/5 rounded-2xl border border-white/10">
                                         <div className="flex-grow text-gray-300 font-light">
                                             本次活動接受 4 到 6 位預約
@@ -234,19 +234,19 @@ export default function BookingForm() {
                                     </div>
                                 </div>
 
-                                <div className="bg-white/5 rounded-2xl p-6 border border-white/10 text-sm text-gray-400 space-y-4">
+                                <div className="bg-white/5 rounded-2xl p-6 border border-white/20 text-sm text-gray-400 space-y-4">
                                     <div className="flex justify-between items-center">
                                         <span className="font-light">預計日期</span>
                                         <span className="text-white font-medium">{selectedDate} / 18:00</span>
                                     </div>
-                                    <div className="flex justify-between items-center border-t border-white/5 pt-4">
+                                    <div className="flex justify-between items-center border-t border-white/10 pt-4">
                                         <span className="font-light">食材費合計 ({formData.guests}位)</span>
                                         <div className="text-right">
                                             <span className="text-green-400 text-2xl font-bold tracking-tight">{formData.guests * 300} 元</span>
                                             <p className="text-[10px] text-gray-500 mt-1">每位 300 元</p>
                                         </div>
                                     </div>
-                                    <div className="text-xs text-gray-500 space-y-2 border-t border-white/5 pt-4 font-light italic">
+                                    <div className="text-xs text-gray-500 space-y-2 border-t border-white/10 pt-4 font-light italic">
                                         <p>• 可自備酒水，免收開瓶費，現場提供紅酒杯。</p>
                                         <p>• 菜色由胡主廚依題組隨機挑選練習。</p>
                                     </div>

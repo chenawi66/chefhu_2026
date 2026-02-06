@@ -33,18 +33,18 @@ export default function DishGrid({ dishes }: DishGridProps) {
     }, {} as Record<string, Dish[]>);
 
     return (
-        <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto relative overflow-hidden" id="menu">
-            {/* Background Decorative Image */}
-            <div className="absolute top-0 right-0 w-1/3 h-1/3 opacity-10 pointer-events-none -z-10">
-                <img src="/images/prep.jpg" alt="Prep" className="w-full h-full object-cover rounded-full blur-2xl" />
+        <section className="py-12 px-4 md:px-8 max-w-7xl mx-auto relative overflow-hidden" id="menu">
+            {/* Background Decorative Image - Increased visibility */}
+            <div className="absolute top-20 right-0 w-1/2 h-1/2 opacity-20 pointer-events-none z-0">
+                <img src="/images/prep.jpg" alt="Prep" className="w-full h-full object-cover rounded-full blur-xl" />
             </div>
 
-            <div className="text-center mb-16 relative">
+            <div className="text-center mb-8 relative z-10">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-yellow-400 mb-4"
+                    className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-yellow-400 mb-2"
                 >
                     乙級檢定題組菜單
                 </motion.h2>
@@ -53,12 +53,8 @@ export default function DishGrid({ dishes }: DishGridProps) {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
                 {Object.entries(groupedDishes).map(([series, groupDishes], i) => {
-                    // Determine Image
-                    const prefix = series.substring(0, 3);
-                    const bgImage = seriesImages[prefix] || seriesImages['default'];
-
                     return (
                         <motion.div
                             key={series}
@@ -66,35 +62,24 @@ export default function DishGrid({ dishes }: DishGridProps) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
-                            className="group relative overflow-hidden rounded-2xl bg-zinc-900/80 border border-white/10 hover:border-green-500/50 transition-all duration-500"
+                            className="group relative overflow-hidden rounded-2xl bg-zinc-900/40 backdrop-blur-md border border-white/5 hover:border-green-500/30 transition-all duration-500"
                         >
-                            {/* Card Header Image */}
-                            <div className="relative h-48 overflow-hidden">
-                                <div
-                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                                    style={{ backgroundImage: `url(${bgImage})` }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent" />
-
-                                <div className="absolute bottom-4 left-6">
-                                    <span className="px-3 py-1 text-xs font-bold text-black bg-yellow-400 rounded-full mb-2 inline-block shadow-lg">
+                            <div className="p-6">
+                                <div className="flex items-center justify-between mb-6 border-b border-white/10 pb-4">
+                                    <h3 className="text-2xl font-bold text-white tracking-widest">
+                                        {series} <span className="text-sm font-light text-gray-500 ml-2">題組</span>
+                                    </h3>
+                                    <span className="px-3 py-1 text-[10px] font-bold text-black bg-yellow-400 rounded-full shadow-lg h-fit">
                                         {groupDishes[0].category}
                                     </span>
-                                    <h3 className="text-3xl font-bold text-white shadow-black drop-shadow-lg">
-                                        {series} 題組
-                                    </h3>
                                 </div>
-                            </div>
-
-                            {/* Dish List */}
-                            <div className="p-6">
-                                <ul className="space-y-3">
+                                <ul className="space-y-2">
                                     {groupDishes.map((dish, idx) => (
-                                        <li key={dish.id} className="flex items-start gap-3 text-gray-300 group-hover:text-white transition-colors">
-                                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-green-900/50 border border-green-500/30 flex items-center justify-center text-xs text-green-400 mt-0.5">
+                                        <li key={dish.id} className="flex items-start gap-4 text-gray-400 group-hover:text-white transition-colors">
+                                            <span className="flex-shrink-0 w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[10px] text-gray-500 mt-1">
                                                 {idx + 1}
                                             </span>
-                                            <span className="text-lg tracking-wide border-b border-white/5 pb-1 w-full block">
+                                            <span className="text-base tracking-wide py-0.5 border-b border-white/5 w-full block">
                                                 {dish.name}
                                             </span>
                                         </li>

@@ -7,9 +7,9 @@ export default function Hero() {
         <div className="relative h-[80vh] flex items-center justify-center overflow-hidden">
             {/* Dynamic Background */}
             <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 scale-105 animate-float"
+                className="absolute inset-0 bg-cover bg-bottom bg-no-repeat z-0 scale-100 animate-float"
                 style={{
-                    backgroundImage: 'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url("/images/atmosphere.jpg")'
+                    backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url("/images/atmosphere.jpg")'
                 }}
             />
 
