@@ -63,9 +63,9 @@ export default function BookingForm() {
 
     if (success) {
         return (
-            <div className="max-w-4xl mx-auto p-12 md:p-24 text-center glass-card rounded-none my-24 border-green-500 relative overflow-hidden flex flex-col md:flex-row items-center gap-12">
-                <div className="w-full md:w-1/2 h-80 overflow-hidden border border-white/10 shadow-2xl">
-                    <img src="/images/cat.jpg" alt="Cat" className="w-full h-full object-cover" />
+            <div className="max-w-4xl mx-auto p-12 md:p-24 text-center glass-card rounded-none my-24 border-green-500/50 relative overflow-hidden flex flex-col md:flex-row items-center gap-12">
+                <div className="w-full md:w-1/2 h-[500px] overflow-hidden border border-white/20 shadow-2xl">
+                    <img src="/images/cat.jpg" alt="胡主廚的貓" className="w-full h-full object-cover" />
                 </div>
                 <div className="w-full md:w-1/2 text-left">
                     <motion.div
@@ -74,15 +74,15 @@ export default function BookingForm() {
                     >
                         <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                     </motion.div>
-                    <h3 className="text-5xl font-black text-white mb-6">席位已預約</h3>
-                    <p className="text-2xl text-gray-300 font-light tracking-wide leading-relaxed mb-10">
+                    <h3 className="text-5xl font-black text-white mb-6 tracking-widest">席位已預約</h3>
+                    <p className="text-2xl text-gray-300 font-bold tracking-wide leading-relaxed mb-10">
                         我們已收到您的預約請求：<br />
-                        <span className="text-green-400 font-bold">{selectedDate} / 18:00</span><br />
+                        <span className="text-green-400 font-black">{selectedDate} / 18:00</span><br />
                         我們將盡快與您用Line聯繫。
                     </p>
                     <button
                         onClick={() => { setSuccess(false); setStep(1); setSelectedDate(''); setSelectedTime(''); }}
-                        className="px-12 py-4 bg-white/10 hover:bg-white/20 text-white transition font-black tracking-widest border border-white/20"
+                        className="px-12 py-4 bg-white/10 hover:bg-white/20 text-white transition font-black tracking-[0.2em] border border-white/20"
                     >
                         再次預約
                     </button>
@@ -95,24 +95,24 @@ export default function BookingForm() {
         <section className="py-24 px-4 bg-black relative" id="book">
             <div className="max-w-6xl mx-auto relative z-10">
                 <div className="text-center mb-20">
-                    <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter italic uppercase">Reservation</h2>
-                    <p className="text-green-500 font-bold tracking-[0.5em]">「 在光影交錯的練工坊，為您留下一席之地 」</p>
+                    <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-widest">預約席位</h2>
+                    <p className="text-green-500 font-bold tracking-[0.4em] text-xl">「 在光影交錯的練工坊，為您留下一席之地 」</p>
                 </div>
 
                 <div className="bg-zinc-900 border border-white/10 p-8 md:p-16">
                     <div className="flex gap-12 mb-16 border-b border-white/5 pb-8">
                         <button
                             onClick={() => setStep(1)}
-                            className={`text-2xl font-black transition-all ${step === 1 ? 'text-green-500 border-b-4 border-green-500 pb-2' : 'text-zinc-700 hover:text-zinc-500'}`}
+                            className={`text-2xl font-black transition-all tracking-widest ${step === 1 ? 'text-green-500 border-b-4 border-green-500 pb-2' : 'text-zinc-700 hover:text-zinc-500'}`}
                         >
-                            01. 擇日 DATE
+                            01. 擇日
                         </button>
                         <button
                             onClick={() => step > 1 && setStep(2)}
                             disabled={step < 2}
-                            className={`text-2xl font-black transition-all ${step === 2 ? 'text-green-500 border-b-4 border-green-500 pb-2' : 'text-zinc-700 hover:text-zinc-500'}`}
+                            className={`text-2xl font-black transition-all tracking-widest ${step === 2 ? 'text-green-500 border-b-4 border-green-500 pb-2' : 'text-zinc-700 hover:text-zinc-500'}`}
                         >
-                            02. 席記 GUEST
+                            02. 席記
                         </button>
                     </div>
 
@@ -127,12 +127,11 @@ export default function BookingForm() {
                             >
                                 <div className="lg:w-2/3 space-y-12">
                                     <div className="bg-yellow-500/10 border-l-4 border-yellow-500 p-8">
-                                        <p className="text-yellow-500 font-black text-xl tracking-widest">時段預設：每週六 18:00</p>
-                                        <p className="text-yellow-500/70 text-sm mt-2 font-bold tracking-widest">DEFAULT TIME: SATURDAY 6:00 PM</p>
+                                        <p className="text-yellow-500 font-black text-2xl tracking-widest">時段預設：每週六 18:00</p>
                                     </div>
 
                                     <div>
-                                        <label className="block text-lg font-black text-white mb-8 tracking-[0.3em] uppercase">選擇日期 SELECT DATE</label>
+                                        <label className="block text-xl font-black text-white mb-8 tracking-[0.2em]">選擇日期</label>
                                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                             {slots.map(slot => (
                                                 <button
@@ -159,23 +158,20 @@ export default function BookingForm() {
                                             onClick={() => setStep(2)}
                                             className="px-20 py-6 bg-green-500 hover:bg-green-400 text-black font-black text-2xl shadow-[0_15px_50px_rgba(34,197,94,0.2)] disabled:opacity-30 disabled:grayscale transition-all transform hover:-translate-y-1"
                                         >
-                                            下一步 NEXT
+                                            下一步
                                         </button>
                                     </div>
                                 </div>
 
                                 {/* Sidebar Cat Image - Direct and Parallel with Dates */}
                                 <div className="lg:w-1/3">
-                                    <div className="h-full min-h-[400px] border border-white/10 relative overflow-hidden group">
+                                    <div className="h-full min-h-[450px] border border-white/10 relative overflow-hidden group">
                                         <img
                                             src="/images/cat.jpg"
-                                            alt="Cat"
+                                            alt="胡主廚的貓"
                                             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                         />
-                                        <div className="absolute inset-0 border-[20px] border-black/10 pointer-events-none"></div>
-                                        <div className="absolute bottom-6 left-6 text-white text-2xl font-black tracking-widest drop-shadow-lg">
-                                            Mimi
-                                        </div>
+                                        <div className="absolute inset-0 border-[20px] border-white/5 pointer-events-none"></div>
                                     </div>
                                 </div>
                             </motion.div>
@@ -191,48 +187,47 @@ export default function BookingForm() {
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                                     <div className="space-y-4">
-                                        <label className="text-lg font-black text-white tracking-[0.2em] uppercase">平常我們是怎麼稱呼你的</label>
+                                        <label className="text-xl font-black text-white tracking-[0.2em]">平常我們是怎麼稱呼你的</label>
                                         <input
                                             required
                                             type="text"
                                             value={formData.name}
                                             onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                            className="w-full bg-zinc-800 p-6 border-2 border-white/5 focus:border-green-500 outline-none transition-all text-white text-xl placeholder-zinc-600 font-bold"
+                                            className="w-full bg-zinc-800 p-6 border-2 border-white/10 focus:border-green-500 outline-none transition-all text-white text-2xl placeholder-zinc-600 font-bold rounded-none"
                                             placeholder="請輸入姓名"
                                         />
                                     </div>
                                     <div className="space-y-4">
-                                        <label className="text-lg font-black text-white tracking-[0.2em] uppercase">Line ID</label>
+                                        <label className="text-xl font-black text-white tracking-[0.2em]">Line ID</label>
                                         <input
                                             required
                                             type="text"
                                             value={formData.phone}
                                             onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                                            className="w-full bg-zinc-800 p-6 border-2 border-white/5 focus:border-green-500 outline-none transition-all text-white text-xl placeholder-zinc-600 font-bold"
+                                            className="w-full bg-zinc-800 p-6 border-2 border-white/10 focus:border-green-500 outline-none transition-all text-white text-2xl placeholder-zinc-600 font-bold rounded-none"
                                             placeholder="請輸入正確的 Line ID"
                                         />
-                                        <p className="text-sm text-zinc-500 font-bold tracking-wider">我們會以 Line 進行預約確認與提供詳細地址</p>
+                                        <p className="text-lg text-zinc-400 font-bold tracking-wider">我們會以 Line 進行預約確認與提供詳細地址</p>
                                     </div>
                                 </div>
 
                                 <div className="space-y-4">
-                                    <label className="text-lg font-black text-white tracking-[0.2em] uppercase">同行夥伴</label>
+                                    <label className="text-xl font-black text-white tracking-[0.2em]">同行夥伴</label>
                                     <input
                                         required
                                         type="text"
                                         value={formData.relationship}
                                         onChange={e => setFormData({ ...formData, relationship: e.target.value })}
-                                        className="w-full bg-zinc-800 p-6 border-2 border-white/5 focus:border-green-500 outline-none transition-all text-white text-xl placeholder-zinc-600 font-bold"
+                                        className="w-full bg-zinc-800 p-6 border-2 border-white/10 focus:border-green-500 outline-none transition-all text-white text-2xl placeholder-zinc-600 font-bold rounded-none"
                                         placeholder="如認識請填「常用稱呼」，若不認識請填「新朋友」"
                                     />
                                 </div>
 
                                 <div className="space-y-4">
-                                    <label className="text-lg font-black text-white tracking-[0.2em] uppercase">出席人數 (4~6位) GUESTS</label>
+                                    <label className="text-xl font-black text-white tracking-[0.2em]">出席人數 (4~6位)</label>
                                     <div className="flex flex-col md:flex-row items-center gap-12 p-10 bg-black/50 border-2 border-white/5">
-                                        <div className="flex-grow text-zinc-400 font-bold text-xl tracking-widest">
-                                            本次活動接受 4 到 6 位預約<br />
-                                            <span className="text-xs text-zinc-600 font-black tracking-[0.3em]">RESERVATION FOR 4-6 PERSONS</span>
+                                        <div className="flex-grow text-zinc-300 font-bold text-2xl tracking-widest leading-relaxed">
+                                            本次活動接受 4 到 6 位預約
                                         </div>
                                         <div className="flex items-center gap-6">
                                             {[4, 5, 6].map(num => (
@@ -240,9 +235,9 @@ export default function BookingForm() {
                                                     key={num}
                                                     type="button"
                                                     onClick={() => setFormData({ ...formData, guests: num })}
-                                                    className={`w-20 h-20 flex items-center justify-center transition-all text-2xl font-black ${formData.guests === num
+                                                    className={`w-20 h-20 flex items-center justify-center transition-all text-3xl font-black rounded-none ${formData.guests === num
                                                         ? 'bg-green-500 text-black shadow-2xl scale-110'
-                                                        : 'bg-zinc-800 text-zinc-500 hover:text-white'
+                                                        : 'bg-zinc-800 text-zinc-500 hover:text-white border border-white/5'
                                                         }`}
                                                 >
                                                     {num}
@@ -252,22 +247,21 @@ export default function BookingForm() {
                                     </div>
                                 </div>
 
-                                <div className="bg-zinc-800/50 p-10 border border-white/5 space-y-8">
-                                    <div className="flex justify-between items-center text-xl">
-                                        <span className="text-zinc-500 font-black tracking-widest uppercase">預計日期 DATE</span>
+                                <div className="bg-zinc-800/80 p-10 border border-white/10 space-y-8">
+                                    <div className="flex justify-between items-center text-2xl">
+                                        <span className="text-zinc-400 font-black tracking-widest">預計日期</span>
                                         <span className="text-white font-black">{selectedDate} / 18:00</span>
                                     </div>
-                                    <div className="flex justify-between items-center border-t border-white/5 pt-8">
-                                        <span className="text-zinc-500 font-black tracking-widest uppercase">食材費合計 TOTAL COST</span>
+                                    <div className="flex justify-between items-center border-t border-white/10 pt-8">
+                                        <span className="text-zinc-400 font-black tracking-widest">食材費合計</span>
                                         <div className="text-right">
-                                            <span className="text-green-500 text-5xl font-black tracking-tighter">{formData.guests * 300}</span>
-                                            <span className="text-green-500 text-lg font-black ml-2">元</span>
-                                            <p className="text-xs text-zinc-600 font-black uppercase tracking-widest mt-2">NTD 300 PER GUEST</p>
+                                            <span className="text-green-500 text-6xl font-black tracking-tighter">{formData.guests * 300}</span>
+                                            <span className="text-green-500 text-2xl font-black ml-2">元</span>
                                         </div>
                                     </div>
-                                    <div className="text-sm text-zinc-500 space-y-4 border-t border-white/5 pt-8 font-bold italic">
-                                        <p className="flex items-center gap-3"><span className="w-2 h-2 bg-green-500"></span> 可自備酒水，免收開瓶費，現場提供紅酒杯。</p>
-                                        <p className="flex items-center gap-3"><span className="w-2 h-2 bg-green-500"></span> 菜色由胡主廚依題組隨機挑選練習。</p>
+                                    <div className="text-lg text-zinc-500 space-y-4 border-t border-white/10 pt-8 font-bold italic">
+                                        <p className="flex items-center gap-4"><span className="w-3 h-3 bg-green-500"></span> 可自備酒水，免收開瓶費，現場提供紅酒杯。</p>
+                                        <p className="flex items-center gap-4"><span className="w-3 h-3 bg-green-500"></span> 菜色由胡主廚依題組隨機挑選練習。</p>
                                     </div>
                                 </div>
 
@@ -275,16 +269,16 @@ export default function BookingForm() {
                                     <button
                                         type="button"
                                         onClick={() => setStep(1)}
-                                        className="text-zinc-600 hover:text-white transition-colors tracking-widest font-black uppercase text-lg"
+                                        className="text-zinc-600 hover:text-white transition-colors tracking-widest font-black text-xl"
                                     >
-                                        ← 返回 BACK
+                                        ← 返回
                                     </button>
                                     <button
                                         type="submit"
                                         disabled={loading}
                                         className="px-24 py-6 bg-yellow-500 hover:bg-yellow-400 text-black font-black text-2xl shadow-2xl disabled:opacity-30 transition-all transform hover:-translate-y-1"
                                     >
-                                        {loading ? 'WAITING...' : '確認預約 RESERVE'}
+                                        {loading ? '處理中...' : '確認預約'}
                                     </button>
                                 </div>
                             </motion.form>

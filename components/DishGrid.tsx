@@ -53,10 +53,11 @@ export default function DishGrid({ dishes }: DishGridProps) {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-20 relative z-10 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 gap-16 relative z-10 max-w-5xl mx-auto">
                 {Object.entries(groupedDishes).map(([series, groupDishes], i) => {
                     const prefix = series.substring(0, 3);
-                    const bgImage = seriesImages[prefix] || seriesImages['default'];
+                    // Use prep.jpg as a reliable local fallback if Unsplash fails
+                    const bgImage = "/images/prep.jpg";
 
                     return (
                         <motion.div
@@ -68,31 +69,30 @@ export default function DishGrid({ dishes }: DishGridProps) {
                             className="group flex flex-col md:flex-row overflow-hidden bg-zinc-900 border border-white/10 hover:border-green-500/50 transition-all duration-500"
                         >
                             {/* Card Image - Clear and Direct */}
-                            <div className="w-full md:w-5/12 h-72 md:h-auto overflow-hidden relative">
+                            <div className="w-full md:w-5/12 h-64 md:h-auto overflow-hidden relative bg-zinc-800">
                                 <img
                                     src={bgImage}
                                     alt={series}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
                                 <div className="absolute top-0 left-0">
-                                    <span className="px-6 py-2 text-xs font-black text-black bg-yellow-400 uppercase tracking-tighter">
+                                    <span className="px-6 py-2 text-sm font-black text-black bg-yellow-400 tracking-widest">
                                         {groupDishes[0].category}
                                     </span>
                                 </div>
                             </div>
 
                             {/* Content Area */}
-                            <div className="p-10 md:p-16 flex-grow flex flex-col justify-center">
-                                <div className="mb-10">
-                                    <h3 className="text-5xl font-black text-white tracking-widest leading-none mb-2">
+                            <div className="p-10 md:p-14 flex-grow flex flex-col justify-center">
+                                <div className="mb-8 border-b border-green-500/30 pb-4">
+                                    <h3 className="text-5xl font-black text-white tracking-[0.2em] leading-none mb-2">
                                         {series}
                                     </h3>
-                                    <div className="h-1 w-20 bg-green-500"></div>
                                 </div>
                                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
                                     {groupDishes.map((dish, idx) => (
                                         <li key={dish.id} className="flex items-start gap-4">
-                                            <span className="flex-shrink-0 w-8 h-8 bg-green-500 flex items-center justify-center text-xs font-black text-black mt-1">
+                                            <span className="flex-shrink-0 w-8 h-8 bg-green-500 flex items-center justify-center text-sm font-black text-black mt-1">
                                                 {idx + 1}
                                             </span>
                                             <span className="text-xl md:text-2xl font-bold text-gray-100 tracking-wide leading-snug">
