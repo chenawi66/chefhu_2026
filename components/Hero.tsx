@@ -4,12 +4,12 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
     return (
-        <div className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+        <div className="relative h-screen flex items-center justify-center overflow-hidden">
             {/* Dynamic Background */}
             <div
-                className="absolute inset-0 bg-cover bg-bottom bg-no-repeat z-0 scale-100 animate-float"
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 scale-100 animate-float"
                 style={{
-                    backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url("/images/atmosphere.jpg")'
+                    backgroundImage: 'linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url("/images/atmosphere.jpg")'
                 }}
             />
 

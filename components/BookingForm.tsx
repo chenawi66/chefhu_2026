@@ -64,8 +64,8 @@ export default function BookingForm() {
     if (success) {
         return (
             <div className="max-w-2xl mx-auto p-12 text-center glass-card rounded-2xl my-24 border-green-500/30 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 opacity-20 pointer-events-none">
-                    <img src="/images/cat.jpg" alt="Cat" className="w-full h-full object-cover rounded-bl-full" />
+                <div className="absolute top-0 right-0 w-48 h-48 opacity-30 pointer-events-none">
+                    <img src="/images/cat.jpg" alt="Cat" className="w-full h-full object-cover rounded-bl-[100px] border-l border-b border-white/20" />
                 </div>
                 <motion.div
                     initial={{ scale: 0 }} animate={{ scale: 1 }}
@@ -76,7 +76,7 @@ export default function BookingForm() {
                 <h3 className="text-3xl font-bold text-white mb-4">席位已預約</h3>
                 <p className="text-gray-300 font-light tracking-wide">
                     我們已收到您預約 {selectedDate} 的請求。<br />
-                    請靜候佳音，我們將盡快與您聯繫確認。
+                    我們將盡快與您用Line聯繫。
                 </p>
                 <button
                     onClick={() => { setSuccess(false); setStep(1); setSelectedDate(''); setSelectedTime(''); }}
@@ -90,9 +90,9 @@ export default function BookingForm() {
 
     return (
         <section className="py-24 px-4 bg-gradient-to-b from-transparent to-black/80 relative" id="book">
-            {/* Decorative Cat Image */}
-            <div className="absolute bottom-0 right-0 w-64 h-64 opacity-10 pointer-events-none z-0 hidden lg:block">
-                <img src="/images/cat.jpg" alt="Cat Decoration" className="w-full h-full object-cover grayscale rounded-tl-full blur-sm" />
+            {/* Decorative Cat Image - Enhanced design */}
+            <div className="absolute bottom-10 left-10 w-80 h-80 opacity-20 pointer-events-none z-0 hidden lg:block">
+                <img src="/images/cat.jpg" alt="Cat Decoration" className="w-full h-full object-cover rounded-3xl grayscale hover:grayscale-0 transition-all duration-1000 rotate-3 border-4 border-white/5" />
             </div>
 
             <div className="max-w-4xl mx-auto relative z-10">
@@ -101,18 +101,18 @@ export default function BookingForm() {
                     <p className="text-gray-400 font-light italic">「在光影交錯的練工坊，為您留下一席之地。」</p>
                 </div>
 
-                <div className="glass-card rounded-2xl p-6 md:p-10 border border-white/5 shadow-2xl">
-                    <div className="flex justify-between mb-8 border-b border-white/10 pb-4">
+                <div className="glass-card rounded-3xl p-6 md:p-12 border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+                    <div className="flex justify-between mb-12 border-b border-white/5 pb-6">
                         <button
                             onClick={() => setStep(1)}
-                            className={`text-lg font-medium px-4 py-2 rounded-lg transition-colors ${step === 1 ? 'text-green-400 bg-green-400/10' : 'text-gray-500'}`}
+                            className={`text-xl font-bold px-6 py-3 rounded-xl transition-all ${step === 1 ? 'text-green-400 bg-green-400/10 shadow-inner' : 'text-gray-600'}`}
                         >
                             01. 擇日
                         </button>
                         <button
                             onClick={() => step > 1 && setStep(2)}
                             disabled={step < 2}
-                            className={`text-lg font-medium px-4 py-2 rounded-lg transition-colors ${step === 2 ? 'text-green-400 bg-green-400/10' : 'text-gray-500'}`}
+                            className={`text-xl font-bold px-6 py-3 rounded-xl transition-all ${step === 2 ? 'text-green-400 bg-green-400/10 shadow-inner' : 'text-gray-600'}`}
                         >
                             02. 席記
                         </button>
@@ -125,15 +125,15 @@ export default function BookingForm() {
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: 20 }}
-                                className="space-y-8"
+                                className="space-y-10"
                             >
                                 <div>
-                                    <div className="flex items-center gap-3 mb-6 bg-yellow-500/10 border border-yellow-500/20 p-4 rounded-xl">
-                                        <div className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></div>
-                                        <p className="text-yellow-500 font-medium">席次時段：每週六 18:00</p>
+                                    <div className="flex items-center gap-4 mb-8 bg-yellow-500/5 border border-yellow-500/20 p-6 rounded-2xl">
+                                        <div className="w-3 h-3 rounded-full bg-yellow-500 animate-ping"></div>
+                                        <p className="text-yellow-500 font-bold tracking-widest uppercase">席次時段：每週六 18:00</p>
                                     </div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-4 tracking-widest uppercase">選擇日期</label>
-                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    <label className="block text-sm font-bold text-gray-500 mb-6 tracking-[0.2em] uppercase">選擇日期</label>
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                                         {slots.map(slot => (
                                             <button
                                                 key={slot.date}
@@ -141,25 +141,25 @@ export default function BookingForm() {
                                                     setSelectedDate(slot.date);
                                                     setSelectedTime('18:00');
                                                 }}
-                                                className={`p-4 rounded-xl border text-center transition-all duration-300 ${selectedDate === slot.date
-                                                    ? 'border-green-500 bg-green-500/20 text-white shadow-[0_0_25px_rgba(34,197,94,0.2)]'
-                                                    : 'border-white/5 bg-white/5 text-gray-400 hover:border-white/20 hover:bg-white/10'
+                                                className={`p-6 rounded-2xl border-2 text-center transition-all duration-500 ${selectedDate === slot.date
+                                                    ? 'border-green-500 bg-green-500/20 text-white shadow-[0_0_30px_rgba(34,197,94,0.3)] scale-105'
+                                                    : 'border-white/5 bg-white/5 text-gray-500 hover:border-white/20 hover:bg-white/10'
                                                     }`}
                                             >
-                                                <div className="text-lg font-bold">{new Date(slot.date).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })}</div>
-                                                <div className="text-xs opacity-60 mt-1 font-light tracking-tighter">{new Date(slot.date).toLocaleDateString('zh-TW', { weekday: 'long' })}</div>
+                                                <div className="text-2xl font-black">{new Date(slot.date).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })}</div>
+                                                <div className="text-sm opacity-60 mt-2 font-medium tracking-widest">{new Date(slot.date).toLocaleDateString('zh-TW', { weekday: 'long' })}</div>
                                             </button>
                                         ))}
                                     </div>
                                 </div>
 
-                                <div className="flex justify-end pt-4">
+                                <div className="flex justify-end pt-6">
                                     <button
                                         disabled={!selectedDate}
                                         onClick={() => setStep(2)}
-                                        className="px-10 py-4 bg-gradient-to-r from-green-700 to-green-600 hover:from-green-600 hover:to-green-500 text-white font-bold rounded-full shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                                        className="px-14 py-5 bg-gradient-to-r from-green-700 to-green-600 hover:from-green-600 hover:to-green-500 text-white font-black text-lg rounded-full shadow-[0_10px_40px_rgba(21,128,61,0.4)] disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:-translate-y-1"
                                     >
-                                        續行
+                                        繼續預約
                                     </button>
                                 </div>
                             </motion.div>
@@ -171,60 +171,61 @@ export default function BookingForm() {
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 onSubmit={handleSubmit}
-                                className="space-y-8"
+                                className="space-y-10"
                             >
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div className="space-y-3">
-                                        <label className="text-sm text-gray-400 tracking-widest uppercase">姓名</label>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                    <div className="space-y-4">
+                                        <label className="text-sm font-bold text-gray-500 tracking-[0.2em] uppercase">姓名</label>
                                         <input
                                             required
                                             type="text"
                                             value={formData.name}
                                             onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                            className="w-full glass-input p-4 rounded-xl border border-white/10 focus:border-green-500/50 outline-none transition-all"
-                                            placeholder="請輸入姓名"
+                                            className="w-full bg-white/10 p-5 rounded-2xl border-2 border-white/10 focus:border-green-500/50 focus:bg-white/20 outline-none transition-all text-white placeholder-gray-600 font-medium"
+                                            placeholder="請輸入您的真實姓名"
                                         />
                                     </div>
-                                    <div className="space-y-3">
-                                        <label className="text-sm text-gray-400 tracking-widest uppercase">Line ID</label>
+                                    <div className="space-y-4">
+                                        <label className="text-sm font-bold text-gray-500 tracking-[0.2em] uppercase">Line ID</label>
                                         <input
                                             required
                                             type="text"
                                             value={formData.phone}
                                             onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                                            className="w-full glass-input p-4 rounded-xl border border-white/10 focus:border-green-500/50 outline-none transition-all"
-                                            placeholder="請提供 Line ID 以便聯繫"
+                                            className="w-full bg-white/10 p-5 rounded-2xl border-2 border-white/10 focus:border-green-500/50 focus:bg-white/20 outline-none transition-all text-white placeholder-gray-600 font-medium"
+                                            placeholder="請輸入正確的 Line ID"
                                         />
+                                        <p className="text-[10px] text-gray-500 tracking-wider">我們會以 Line 進行預約確認與提供詳細地址</p>
                                     </div>
                                 </div>
 
-                                <div className="space-y-3">
-                                    <label className="text-sm text-gray-400 tracking-widest uppercase">同行夥伴</label>
+                                <div className="space-y-4">
+                                    <label className="text-sm font-bold text-gray-500 tracking-[0.2em] uppercase">同行夥伴</label>
                                     <input
                                         required
                                         type="text"
                                         value={formData.relationship}
                                         onChange={e => setFormData({ ...formData, relationship: e.target.value })}
-                                        className="w-full glass-input p-4 rounded-xl border border-white/10 focus:border-green-500/50 outline-none transition-all"
-                                        placeholder="會以 Line 進行預約確認與提供地址"
+                                        className="w-full bg-white/10 p-5 rounded-2xl border-2 border-white/10 focus:border-green-500/50 focus:bg-white/20 outline-none transition-all text-white placeholder-gray-600 font-medium"
+                                        placeholder="如認識請填常用稱呼，若不認識請填「新朋友」"
                                     />
                                 </div>
 
-                                <div className="space-y-3">
-                                    <label className="text-sm text-gray-400 tracking-widest uppercase">出席人數 (4~6位)</label>
-                                    <div className="flex items-center gap-6 p-6 bg-white/5 rounded-2xl border border-white/10">
-                                        <div className="flex-grow text-gray-300 font-light">
+                                <div className="space-y-4">
+                                    <label className="text-sm font-bold text-gray-500 tracking-[0.2em] uppercase">出席人數 (4~6位)</label>
+                                    <div className="flex items-center gap-8 p-8 bg-black/40 rounded-3xl border-2 border-white/5">
+                                        <div className="flex-grow text-gray-400 font-light text-lg">
                                             本次活動接受 4 到 6 位預約
                                         </div>
-                                        <div className="flex items-center gap-4">
+                                        <div className="flex items-center gap-6">
                                             {[4, 5, 6].map(num => (
                                                 <button
                                                     key={num}
                                                     type="button"
                                                     onClick={() => setFormData({ ...formData, guests: num })}
-                                                    className={`w-12 h-12 flex items-center justify-center rounded-full border transition-all font-bold ${formData.guests === num
-                                                        ? 'bg-green-500 border-green-400 text-black shadow-lg shadow-green-500/30'
-                                                        : 'border-white/10 hover:border-white/30 text-gray-400'
+                                                    className={`w-16 h-16 flex items-center justify-center rounded-2xl border-2 transition-all text-xl font-black ${formData.guests === num
+                                                        ? 'bg-green-500 border-green-400 text-black shadow-[0_10px_30px_rgba(34,197,94,0.4)] scale-110'
+                                                        : 'border-white/10 hover:border-white/30 text-gray-600 hover:text-white'
                                                         }`}
                                                 >
                                                     {num}
@@ -234,23 +235,47 @@ export default function BookingForm() {
                                     </div>
                                 </div>
 
-                                <div className="bg-white/5 rounded-2xl p-6 border border-white/20 text-sm text-gray-400 space-y-4">
+                                <div className="bg-white/5 rounded-3xl p-8 border border-white/10 text-sm text-gray-400 space-y-6">
                                     <div className="flex justify-between items-center">
-                                        <span className="font-light">預計日期</span>
-                                        <span className="text-white font-medium">{selectedDate} / 18:00</span>
+                                        <span className="font-light tracking-widest">預計日期</span>
+                                        <span className="text-white font-bold text-lg">{selectedDate} / 18:00</span>
                                     </div>
-                                    <div className="flex justify-between items-center border-t border-white/10 pt-4">
-                                        <span className="font-light">食材費合計 ({formData.guests}位)</span>
+                                    <div className="flex justify-between items-center border-t border-white/5 pt-6">
+                                        <span className="font-light tracking-widest">食材費合計 ({formData.guests}位)</span>
                                         <div className="text-right">
-                                            <span className="text-green-400 text-2xl font-bold tracking-tight">{formData.guests * 300} 元</span>
-                                            <p className="text-[10px] text-gray-500 mt-1">每位 300 元</p>
+                                            <span className="text-green-400 text-4xl font-black tracking-tighter">{formData.guests * 300}</span>
+                                            <span className="text-green-400 text-sm font-bold ml-2">元</span>
+                                            <p className="text-[11px] text-gray-600 mt-2 font-bold uppercase tracking-widest">NTD 300 PER GUEST</p>
                                         </div>
                                     </div>
-                                    <div className="text-xs text-gray-500 space-y-2 border-t border-white/10 pt-4 font-light italic">
-                                        <p>• 可自備酒水，免收開瓶費，現場提供紅酒杯。</p>
-                                        <p>• 菜色由胡主廚依題組隨機挑選練習。</p>
+                                    <div className="text-xs text-gray-600 space-y-3 border-t border-white/5 pt-6 font-medium italic">
+                                        <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> 可自備酒水，免收開瓶費，現場提供紅酒杯。</p>
+                                        <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> 菜色由胡主廚依題組隨機挑選練習。</p>
                                     </div>
                                 </div>
+
+                                <div className="flex justify-between items-center pt-8">
+                                    <button
+                                        type="button"
+                                        onClick={() => setStep(1)}
+                                        className="text-gray-600 hover:text-white transition-colors tracking-[0.3em] font-bold uppercase"
+                                    >
+                                        ← 返回
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        disabled={loading}
+                                        className="px-16 py-5 bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-white font-black text-xl rounded-full shadow-[0_15px_50px_rgba(202,138,4,0.3)] disabled:opacity-50 transition-all transform hover:-translate-y-1 flex items-center gap-3"
+                                    >
+                                        {loading ? '記名中...' : '確認預約'}
+                                    </button>
+                                </div>
+                            </motion.form>
+                        )}
+                    </AnimatePresence>
+                </div>
+            </div>
+        </section>
 
                                 <div className="flex justify-between items-center pt-6">
                                     <button
@@ -268,11 +293,12 @@ export default function BookingForm() {
                                         {loading ? '記名中...' : '確認預約'}
                                     </button>
                                 </div>
-                            </motion.form>
-                        )}
-                    </AnimatePresence>
-                </div>
-            </div>
-        </section>
+                            </motion.form >
+                        )
+}
+                    </AnimatePresence >
+                </div >
+            </div >
+        </section >
     );
 }
