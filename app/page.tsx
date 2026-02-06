@@ -8,7 +8,7 @@ import FloatingCTA from '@/components/FloatingCTA';
 import { dishes } from '@/lib/dishes';
 
 export default function Home() {
-    const [isReserved, setIsReserved] = useState(false);
+    const [isCTAHidden, setIsCTAHidden] = useState(false);
 
     useEffect(() => {
         // Force scroll to top on initial load/refresh
@@ -19,8 +19,8 @@ export default function Home() {
         <main className="min-h-screen">
             <Hero />
             <DishGrid dishes={dishes} />
-            <BookingForm onSuccess={(val) => setIsReserved(val)} />
-            <FloatingCTA hidden={isReserved} />
+            <BookingForm onStatusChange={(status) => setIsCTAHidden(status.success || status.isStep2)} />
+            <FloatingCTA hidden={isCTAHidden} />
 
             {/* Decorative Spacer */}
             <div className="py-20 flex justify-center opacity-30">

@@ -9,10 +9,10 @@ interface TimeSlot {
 }
 
 interface BookingFormProps {
-    onSuccess?: (success: boolean) => void;
+    onStatusChange?: (status: { success: boolean; isStep2: boolean }) => void;
 }
 
-export default function BookingForm({ onSuccess }: BookingFormProps) {
+export default function BookingForm({ onStatusChange }: BookingFormProps) {
     const [slots, setSlots] = useState<TimeSlot[]>([]);
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedTime, setSelectedTime] = useState('');
@@ -29,8 +29,10 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
     });
 
     useEffect(() => {
-        if (onSuccess) onSuccess(success);
-    }, [success, onSuccess]);
+        if (onStatusChange) {
+            onStatusChange({ success, isStep2: step === 2 });
+        }
+    }, [success, step, onStatusChange]);
 
     useEffect(() => {
         setMounted(true);
@@ -41,11 +43,25 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
 
     useEffect(() => {
         if (!mounted || (step === 1 && !success)) return;
-        // Auto-scroll to form top on step change or success
-        const section = document.getElementById('book');
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
+
+        // Use a slight delay to ensure the DOM has updated for success view
+        const targetId = success ? 'success-view' : 'book';
+        const timer = setTimeout(() => {
+            const element = document.getElementById(targetId);
+            if (element) {
+                const offset = 80; // offset for some breathing room at the top
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = element.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }, 100);
+        return () => clearTimeout(timer);
     }, [step, success, mounted]);
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -82,7 +98,7 @@ export default function BookingForm({ onSuccess }: BookingFormProps) {
 
     if (success) {
         return (
-            <div className="max-w-4xl mx-auto p-8 md:p-24 text-center glass-card rounded-none my-24 border-green-500/50 relative overflow-hidden flex flex-col md:flex-row items-center gap-12">
+            <div id="success-view" className="max-w-4xl mx-auto p-8 md:p-24 text-center glass-card rounded-none my-24 border-green-500/50 relative overflow-hidden flex flex-col md:flex-row items-center gap-12">
                 <div className="w-full md:w-1/2 h-64 md:h-[500px] overflow-hidden border border-white/20 shadow-2xl">
                     <img src="/images/cat.jpg" alt="胡主廚的貓" className="w-full h-full object-cover" />
                 </div>
