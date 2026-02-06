@@ -45,6 +45,24 @@ export async function POST(request: Request) {
     const { removeSlot } = await import('@/lib/data');
     removeSlot(date, time);
 
+    // Sync to Redis
+    try {
+      const { redis, REDIS_KEYS } = await import('@/lib/redis');
+      const slots = await redis.get<any[]>(REDIS_KEYS.SLOTS) || [];
+      const updatedSlots = slots.map(slot => {
+        if (slot.date === date) {
+          return {
+            ...slot,
+            times: slot.times.filter((t: string) => t !== time)
+          };
+        }
+        return slot;
+      }).filter(slot => slot.times.length > 0);
+      await redis.set(REDIS_KEYS.SLOTS, updatedSlots);
+    } catch (redisError) {
+      console.error('Failed to sync to Redis:', redisError);
+    }
+
     // Send Email Notification instead of Line
     await sendEmailNotification(newReservation);
 
