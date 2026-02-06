@@ -83,19 +83,19 @@ export default function DishGrid({ dishes }: DishGridProps) {
                             </div>
 
                             {/* Content Area */}
-                            <div className="p-10 md:p-14 flex-grow flex flex-col justify-center">
-                                <div className="mb-8 border-b border-green-500/30 pb-4">
-                                    <h3 className="text-5xl font-black text-white tracking-[0.2em] leading-none mb-2">
+                            <div className="p-6 md:p-14 flex-grow flex flex-col justify-center">
+                                <div className="mb-6 md:mb-8 border-b border-green-500/30 pb-4">
+                                    <h3 className="text-4xl md:text-5xl font-black text-white tracking-[0.2em] leading-none mb-2">
                                         {series}
                                     </h3>
                                 </div>
-                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
+                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3 md:gap-y-6">
                                     {groupDishes.map((dish, idx) => (
                                         <li key={dish.id} className="flex items-start gap-4">
-                                            <span className="flex-shrink-0 w-8 h-8 bg-green-500 flex items-center justify-center text-sm font-black text-black mt-1">
+                                            <span className="flex-shrink-0 w-7 h-7 md:w-8 md:h-8 bg-green-500 flex items-center justify-center text-xs md:text-sm font-black text-black mt-1">
                                                 {idx + 1}
                                             </span>
-                                            <span className="text-xl md:text-2xl font-bold text-gray-100 tracking-wide leading-snug">
+                                            <span className="text-lg md:text-2xl font-bold text-gray-100 tracking-wide leading-snug">
                                                 {dish.name}
                                             </span>
                                         </li>
