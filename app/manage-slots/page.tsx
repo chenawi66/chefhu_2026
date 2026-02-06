@@ -20,12 +20,27 @@ export default function ManageSlots() {
     const refreshSlots = async (pwd: string) => {
         setLoading(true);
         try {
+            // Verify password first
+            const verifyRes = await fetch('/api/manage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password: pwd, action: 'verify' })
+            });
+
+            if (!verifyRes.ok) {
+                const errorData = await verifyRes.json();
+                setMessage(errorData.error === 'Unauthorized' ? '密碼不正確' : '連線錯誤');
+                setLoading(false);
+                return;
+            }
+
             const res = await fetch('/api/slots');
             const data = await res.json();
             setSlots(data);
             setIsAuthorized(true);
+            setMessage('');
         } catch (error) {
-            setMessage('無法獲取資料');
+            setMessage('無法獲取資料，請檢查網路');
         } finally {
             setLoading(false);
         }
@@ -122,8 +137,8 @@ export default function ManageSlots() {
                                     onClick={() => handleAction(isOpened ? 'close' : 'open', date, '18:00')}
                                     disabled={loading}
                                     className={`px-10 py-3 font-black tracking-widest transition-all ${isOpened
-                                            ? 'bg-red-500/10 text-red-500 border border-red-500/50 hover:bg-red-500 hover:text-white'
-                                            : 'bg-green-500 text-black hover:bg-green-400'
+                                        ? 'bg-red-500/10 text-red-500 border border-red-500/50 hover:bg-red-500 hover:text-white'
+                                        : 'bg-green-500 text-black hover:bg-green-400'
                                         }`}
                                 >
                                     {isOpened ? '關閉預約' : '開放預約'}
