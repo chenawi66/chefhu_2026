@@ -4,11 +4,9 @@ import { useState, useEffect } from 'react';
 import Hero from '@/components/Hero';
 import DishGrid from '@/components/DishGrid';
 import BookingForm from '@/components/BookingForm';
-import FloatingCTA from '@/components/FloatingCTA';
 import { dishes } from '@/lib/dishes';
 
 export default function Home() {
-    const [isCTAHidden, setIsCTAHidden] = useState(false);
     const [slots, setSlots] = useState<any[]>([]);
     const [jumpDate, setJumpDate] = useState<string | null>(null);
 
@@ -41,9 +39,7 @@ export default function Home() {
             />
             <BookingForm
                 jumpDate={jumpDate}
-                onStatusChange={(status) => setIsCTAHidden(status.success || status.isStep2)}
             />
-            <FloatingCTA hidden={isCTAHidden} />
 
             {/* Decorative Spacer */}
             <div className="py-20 flex justify-center opacity-30">

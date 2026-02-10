@@ -25,10 +25,11 @@ export default function Hero() {
                         乙級學徒練工坊
                     </span>
                     <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-                        中餐烹調的 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">極致藝術</span>
+                        中餐烹調的 <br className="md:hidden" />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">極致藝術</span>
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light">
-                        從 105 道官方精選菜色中體驗傳統美味。
+                    <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                        從 105 道官方精選菜色中體驗傳統美味。<br className="md:hidden" />
                         邀請您的親朋好友，享受專屬的品鑑時光。
                     </p>
 

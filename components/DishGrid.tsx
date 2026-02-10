@@ -82,24 +82,16 @@ export default function DishGrid({ dishes, slots, onSelectDate }: DishGridProps)
                             {/* Content Area */}
                             <div className="p-6 md:p-14 flex-grow flex flex-col justify-center">
                                 <div className="mb-6 md:mb-8 border-b border-green-500/30 pb-4">
-                                    {mappingDate && (
-                                        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
-                                            <div className="text-green-500 font-black text-4xl md:text-6xl tracking-widest leading-none">
-                                                {new Date(mappingDate).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })}
-                                            </div>
-                                            <button
-                                                onClick={() => handleBookClick(mappingDate)}
-                                                className="px-6 py-2 bg-green-500 hover:bg-green-400 text-black font-black text-sm tracking-widest transition-all truncate"
-                                            >
-                                                我要預定
-                                            </button>
+                                    <div className="flex items-baseline gap-4 mb-2">
+                                        <div className="text-green-500 font-black text-4xl md:text-6xl tracking-widest leading-none">
+                                            {mappingDate && new Date(mappingDate).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })}
                                         </div>
-                                    )}
+                                    </div>
                                     <h3 className="text-xl md:text-2xl font-bold text-gray-400 tracking-[0.2em] leading-none">
                                         題組：{series}
                                     </h3>
                                 </div>
-                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3 md:gap-y-6">
+                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3 md:gap-y-6 mb-8 md:mb-12">
                                     {groupDishes.map((dish, idx) => (
                                         <li key={dish.id} className="flex items-start gap-4">
                                             <span className="flex-shrink-0 w-7 h-7 md:w-8 md:h-8 bg-green-500 flex items-center justify-center text-xs md:text-sm font-black text-black mt-1">
@@ -111,6 +103,15 @@ export default function DishGrid({ dishes, slots, onSelectDate }: DishGridProps)
                                         </li>
                                     ))}
                                 </ul>
+
+                                {mappingDate && (
+                                    <button
+                                        onClick={() => handleBookClick(mappingDate)}
+                                        className="w-full py-4 bg-green-500 hover:bg-green-400 text-black font-black text-lg tracking-[0.4em] transition-all transform hover:-translate-y-1 shadow-lg shadow-green-500/20"
+                                    >
+                                        我要預定
+                                    </button>
+                                )}
                             </div>
                         </motion.div>
                     );
