@@ -305,10 +305,10 @@ export default function BookingForm({ jumpDate, onStatusChange }: BookingFormPro
                                     <div className="flex flex-col md:flex-row justify-between items-center border-t border-white/10 pt-8 gap-6 text-left w-full">
                                         <div className="space-y-2 w-full md:w-auto">
                                             <span className="text-zinc-400 font-black tracking-widest block text-xl md:text-2xl">食材費合計</span>
-                                            <span className="text-zinc-500 text-base md:text-lg font-bold block">食材費 300/人</span>
+                                            <span className="text-zinc-500 text-base md:text-lg font-bold block">食材費 380/人</span>
                                         </div>
                                         <div className="w-full md:w-auto md:text-right">
-                                            <span className="text-green-500 text-5xl md:text-6xl font-black tracking-tighter">{formData.guests * 300}</span>
+                                            <span className="text-green-500 text-5xl md:text-6xl font-black tracking-tighter">{formData.guests * 380}</span>
                                             <span className="text-green-500 text-xl md:text-2xl font-black ml-2">元</span>
                                         </div>
                                     </div>
