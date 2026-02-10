@@ -9,17 +9,40 @@ import { dishes } from '@/lib/dishes';
 
 export default function Home() {
     const [isCTAHidden, setIsCTAHidden] = useState(false);
+    const [slots, setSlots] = useState<any[]>([]);
+    const [jumpDate, setJumpDate] = useState<string | null>(null);
 
     useEffect(() => {
         // Force scroll to top on initial load/refresh
         window.scrollTo(0, 0);
+
+        // Initial fetch
+        fetch('/api/slots')
+            .then(res => res.json())
+            .then(data => setSlots(data));
     }, []);
+
+    const handleSelectDate = (date: string) => {
+        setJumpDate(date);
+        // Step back to 1 if we're jumping from menu
+        const section = document.getElementById('book');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <main className="min-h-screen">
             <Hero />
-            <DishGrid dishes={dishes} />
-            <BookingForm onStatusChange={(status) => setIsCTAHidden(status.success || status.isStep2)} />
+            <DishGrid
+                dishes={dishes}
+                slots={slots}
+                onSelectDate={handleSelectDate}
+            />
+            <BookingForm
+                jumpDate={jumpDate}
+                onStatusChange={(status) => setIsCTAHidden(status.success || status.isStep2)}
+            />
             <FloatingCTA hidden={isCTAHidden} />
 
             {/* Decorative Spacer */}

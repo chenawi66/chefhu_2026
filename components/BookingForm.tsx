@@ -10,10 +10,11 @@ interface TimeSlot {
 }
 
 interface BookingFormProps {
+    jumpDate?: string | null;
     onStatusChange?: (status: { success: boolean; isStep2: boolean }) => void;
 }
 
-export default function BookingForm({ onStatusChange }: BookingFormProps) {
+export default function BookingForm({ jumpDate, onStatusChange }: BookingFormProps) {
     const [slots, setSlots] = useState<TimeSlot[]>([]);
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedTime, setSelectedTime] = useState('');
@@ -21,6 +22,14 @@ export default function BookingForm({ onStatusChange }: BookingFormProps) {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        if (jumpDate) {
+            setSelectedDate(jumpDate);
+            setSelectedTime('18:00');
+            setStep(1); // Ensure we are on step 1 to see the selection
+        }
+    }, [jumpDate]);
 
     const [formData, setFormData] = useState({
         name: '',

@@ -1,19 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { Dish, dishes, dateSeriesMapping } from '@/lib/dishes';
 
-// Images for different sets to maintain visual consistency
-const seriesImages: Record<string, string> = {
-    '201': 'https://images.unsplash.com/photo-1563245372-f21720e32c4d?auto=format&fit=crop&w=800&q=80',
-    '202': 'https://images.unsplash.com/photo-1606850740922-b9e776269b2d?auto=format&fit=crop&w=800&q=80',
-    '203': 'https://images.unsplash.com/photo-1519708227418-c8fd9a3a2720?auto=format&fit=crop&w=800&q=80',
-    'default': 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80'
-};
+interface DishGridProps {
+    dishes: Dish[];
+    slots: any[];
+    onSelectDate: (date: string) => void;
+}
 
-export default function DishGrid({ dishes }: { dishes: Dish[] }) {
+export default function DishGrid({ dishes, slots, onSelectDate }: DishGridProps) {
+    const [showAlert, setShowAlert] = useState(false);
+
     // Group dishes by Series (201A, 201B...)
     const groupedDishes = dishes.reduce((acc: Record<string, Dish[]>, dish: Dish) => {
         if (!acc[dish.series]) {
@@ -22,6 +22,16 @@ export default function DishGrid({ dishes }: { dishes: Dish[] }) {
         acc[dish.series].push(dish);
         return acc;
     }, {} as Record<string, Dish[]>);
+
+    const handleBookClick = (date: string) => {
+        // Find if this date is in available slots
+        const isAvailable = slots.some(s => s.date === date && s.times.includes('18:00'));
+        if (isAvailable) {
+            onSelectDate(date);
+        } else {
+            setShowAlert(true);
+        }
+    };
 
     return (
         <section className="py-12 px-4 md:px-8 max-w-7xl mx-auto relative overflow-hidden" id="menu">
@@ -46,9 +56,9 @@ export default function DishGrid({ dishes }: { dishes: Dish[] }) {
 
             <div className="grid grid-cols-1 gap-16 relative z-10 max-w-5xl mx-auto">
                 {Object.entries(groupedDishes).map(([series, groupDishes], i) => {
-                    const prefix = series.substring(0, 3);
                     // Use prep.jpg as a reliable local fallback if Unsplash fails
                     const bgImage = "/images/prep.jpg";
+                    const mappingDate = Object.entries(dateSeriesMapping).find(([_, s]) => s === series)?.[0];
 
                     return (
                         <motion.div
@@ -72,9 +82,17 @@ export default function DishGrid({ dishes }: { dishes: Dish[] }) {
                             {/* Content Area */}
                             <div className="p-6 md:p-14 flex-grow flex flex-col justify-center">
                                 <div className="mb-6 md:mb-8 border-b border-green-500/30 pb-4">
-                                    {Object.entries(dateSeriesMapping).find(([_, s]) => s === series) && (
-                                        <div className="text-green-500 font-black text-4xl md:text-6xl mb-4 tracking-widest">
-                                            {new Date(Object.entries(dateSeriesMapping).find(([_, s]) => s === series)![0]).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })} 預定
+                                    {mappingDate && (
+                                        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
+                                            <div className="text-green-500 font-black text-4xl md:text-6xl tracking-widest leading-none">
+                                                {new Date(mappingDate).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })} 預定
+                                            </div>
+                                            <button
+                                                onClick={() => handleBookClick(mappingDate)}
+                                                className="px-6 py-2 bg-green-500 hover:bg-green-400 text-black font-black text-sm tracking-widest transition-all truncate"
+                                            >
+                                                我要預定
+                                            </button>
                                         </div>
                                     )}
                                     <h3 className="text-xl md:text-2xl font-bold text-gray-400 tracking-[0.2em] leading-none">
@@ -98,6 +116,46 @@ export default function DishGrid({ dishes }: { dishes: Dish[] }) {
                     );
                 })}
             </div>
+
+            {/* Custom Alert Modal */}
+            <AnimatePresence>
+                {showAlert && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            className="bg-zinc-900 border border-white/20 p-8 md:p-12 max-w-md w-full relative"
+                        >
+                            <button
+                                onClick={() => setShowAlert(false)}
+                                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+                            >
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                            <div className="text-center">
+                                <div className="w-20 h-20 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-6 text-red-500 border border-red-500/30">
+                                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 tracking-widest">此時段已有人預約</h3>
+                                <p className="text-gray-400 text-lg mb-8 font-light">
+                                    很抱歉，該場次席位已額滿。<br />請參考其他日期的品鑑場次。
+                                </p>
+                                <button
+                                    onClick={() => setShowAlert(false)}
+                                    className="w-full py-4 bg-white/10 hover:bg-white/20 text-white font-black tracking-widest transition-all border border-white/20"
+                                >
+                                    返回菜單
+                                </button>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }
