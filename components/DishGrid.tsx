@@ -85,7 +85,7 @@ export default function DishGrid({ dishes, slots, onSelectDate }: DishGridProps)
                                     {mappingDate && (
                                         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
                                             <div className="text-green-500 font-black text-4xl md:text-6xl tracking-widest leading-none">
-                                                {new Date(mappingDate).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })} 預定
+                                                {new Date(mappingDate).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })}
                                             </div>
                                             <button
                                                 onClick={() => handleBookClick(mappingDate)}
