@@ -30,7 +30,7 @@ export interface DB {
 // Helper to generate Saturdays between two dates
 function generateSaturdays(startMonth: number, startYear: number, endMonth: number, endYear: number) {
     const dates = [];
-    const excludedDates = ['2026-03-28', '2026-04-04', '2026-05-23', '2026-05-30', '2026-06-06'];
+    const excludedDates = ['2026-03-07', '2026-03-28', '2026-04-04', '2026-05-23', '2026-05-30', '2026-06-06'];
     const start = new Date(startYear, startMonth - 1, 1);
     const end = new Date(endYear, endMonth, 0);
 

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-import { Dish, dishes } from '@/lib/dishes';
+import { Dish, dishes, dateSeriesMapping } from '@/lib/dishes';
 
 // Images for different sets to maintain visual consistency
 const seriesImages: Record<string, string> = {
@@ -66,11 +66,7 @@ export default function DishGrid({ dishes }: { dishes: Dish[] }) {
                                     alt={series}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
-                                <div className="absolute top-0 left-0">
-                                    <span className="px-6 py-2 text-sm font-black text-black bg-yellow-400 tracking-widest">
-                                        {groupDishes[0].category}
-                                    </span>
-                                </div>
+                                { /* Category tag removed */}
                             </div>
 
                             {/* Content Area */}
@@ -79,6 +75,11 @@ export default function DishGrid({ dishes }: { dishes: Dish[] }) {
                                     <h3 className="text-4xl md:text-5xl font-black text-white tracking-[0.2em] leading-none mb-2">
                                         {series}
                                     </h3>
+                                    {Object.entries(dateSeriesMapping).find(([_, s]) => s === series) && (
+                                        <div className="text-green-500 font-black text-xl md:text-2xl mt-4 tracking-widest">
+                                            {new Date(Object.entries(dateSeriesMapping).find(([_, s]) => s === series)![0]).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })} 預定
+                                        </div>
+                                    )}
                                 </div>
                                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3 md:gap-y-6">
                                     {groupDishes.map((dish, idx) => (

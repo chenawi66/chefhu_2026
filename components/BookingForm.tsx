@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { dateSeriesMapping } from '@/lib/dishes';
 
 interface TimeSlot {
     date: string;
@@ -182,6 +183,11 @@ export default function BookingForm({ onStatusChange }: BookingFormProps) {
                                                 >
                                                     <div className="text-2xl md:text-3xl font-black leading-none">{new Date(slot.date).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })}</div>
                                                     <div className="text-xs md:text-sm font-bold mt-2 opacity-60 tracking-widest">{new Date(slot.date).toLocaleDateString('zh-TW', { weekday: 'long' })}</div>
+                                                    {dateSeriesMapping[slot.date] && (
+                                                        <div className="mt-3 pt-3 border-t border-black/10 text-sm font-black tracking-widest uppercase">
+                                                            {dateSeriesMapping[slot.date]} 題組
+                                                        </div>
+                                                    )}
                                                 </button>
                                             ))}
                                         </div>
