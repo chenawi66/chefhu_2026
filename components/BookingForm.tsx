@@ -181,10 +181,10 @@ export default function BookingForm({ onStatusChange }: BookingFormProps) {
                                                         : 'border-white/5 bg-white/5 text-zinc-500 hover:border-white/20'
                                                         }`}
                                                 >
-                                                    <div className="text-2xl md:text-3xl font-black leading-none">{new Date(slot.date).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })}</div>
-                                                    <div className="text-xs md:text-sm font-bold mt-2 opacity-60 tracking-widest">{new Date(slot.date).toLocaleDateString('zh-TW', { weekday: 'long' })}</div>
+                                                    <div className="text-3xl md:text-5xl font-black leading-none">{new Date(slot.date).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })}</div>
+                                                    <div className="text-[10px] md:text-xs font-bold mt-2 opacity-60 tracking-widest">{new Date(slot.date).toLocaleDateString('zh-TW', { weekday: 'long' })}</div>
                                                     {dateSeriesMapping[slot.date] && (
-                                                        <div className="mt-3 pt-3 border-t border-black/10 text-sm font-black tracking-widest uppercase">
+                                                        <div className="mt-3 pt-3 border-t border-black/10 text-[10px] md:text-xs font-medium tracking-widest uppercase opacity-70">
                                                             {dateSeriesMapping[slot.date]} 題組
                                                         </div>
                                                     )}

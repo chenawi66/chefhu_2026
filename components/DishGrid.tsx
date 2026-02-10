@@ -72,14 +72,14 @@ export default function DishGrid({ dishes }: { dishes: Dish[] }) {
                             {/* Content Area */}
                             <div className="p-6 md:p-14 flex-grow flex flex-col justify-center">
                                 <div className="mb-6 md:mb-8 border-b border-green-500/30 pb-4">
-                                    <h3 className="text-4xl md:text-5xl font-black text-white tracking-[0.2em] leading-none mb-2">
-                                        {series}
-                                    </h3>
                                     {Object.entries(dateSeriesMapping).find(([_, s]) => s === series) && (
-                                        <div className="text-green-500 font-black text-xl md:text-2xl mt-4 tracking-widest">
+                                        <div className="text-green-500 font-black text-4xl md:text-6xl mb-4 tracking-widest">
                                             {new Date(Object.entries(dateSeriesMapping).find(([_, s]) => s === series)![0]).toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })} 預定
                                         </div>
                                     )}
+                                    <h3 className="text-xl md:text-2xl font-bold text-gray-400 tracking-[0.2em] leading-none">
+                                        題組：{series}
+                                    </h3>
                                 </div>
                                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3 md:gap-y-6">
                                     {groupDishes.map((dish, idx) => (
