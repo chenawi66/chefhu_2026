@@ -5,7 +5,7 @@ import { Users, Calendar, ClipboardEdit, Utensils, ChevronRight } from 'lucide-r
 
 export default function Hero() {
     return (
-        <div className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="relative min-h-screen flex items-center justify-center">
             {/* Dynamic Background */}
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 scale-100 animate-float"
@@ -16,7 +16,7 @@ export default function Hero() {
 
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
 
-            <div className="relative z-20 text-center px-4 max-w-4xl mx-auto pt-24 md:pt-0">
+            <div className="relative z-20 text-center px-4 max-w-4xl mx-auto pt-24 pb-16 md:pt-0 md:pb-0">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -37,10 +37,10 @@ export default function Hero() {
                     {/* Booking Process Flowchart */}
                     <div className="hidden md:flex items-center justify-center gap-4 mb-14 max-w-5xl mx-auto px-4">
                         {[
-                            { icon: Users, text: "找尋飯友", sub: "每組 4~6位" },
+                            { icon: Users, text: "找尋飯友", sub: "每組 4~6 位" },
                             { icon: Calendar, text: "預約時間", sub: "預約可行時間" },
                             { icon: ClipboardEdit, text: "留下資訊", sub: "留下聯絡資訊" },
-                            { icon: Utensils, text: "享用佳餚", sub: "國家乙級檢定用菜" }
+                            { icon: Utensils, text: "享用佳餚", sub: "老宅裡的國家級檢定用菜" }
                         ].map((step, index, array) => (
                             <div key={index} className="flex items-center">
                                 <motion.div
@@ -49,7 +49,7 @@ export default function Hero() {
                                     transition={{ delay: 0.2 + index * 0.1 }}
                                     className="flex flex-col items-center group relative"
                                 >
-                                    <span className="absolute -top-2 -left-2 text-green-500/40 font-bold italic text-xl select-none">
+                                    <span className="absolute -top-2 -left-2 text-green-400/80 font-bold italic text-xl select-none">
                                         {index + 1}
                                     </span>
                                     <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:bg-green-500/20 group-hover:border-green-500/50 transition-all duration-300 backdrop-blur-sm">
@@ -75,10 +75,10 @@ export default function Hero() {
                     {/* Mobile Flowchart */}
                     <div className="grid grid-cols-2 gap-4 md:hidden mb-12 px-4">
                         {[
-                            { icon: Users, text: "找尋飯友", sub: "每組 4~6位" },
+                            { icon: Users, text: "找尋飯友", sub: "每組 4~6 位" },
                             { icon: Calendar, text: "預約時間", sub: "預約可行時間" },
                             { icon: ClipboardEdit, text: "留下資訊", sub: "留下聯絡資訊" },
-                            { icon: Utensils, text: "享用佳餚", sub: "老宅國家菜色" }
+                            { icon: Utensils, text: "享用佳餚", sub: "老宅裡的國家級檢定用菜" }
                         ].map((step, index) => (
                             <motion.div
                                 key={index}
@@ -87,7 +87,7 @@ export default function Hero() {
                                 transition={{ delay: 0.2 + index * 0.1 }}
                                 className="bg-white/5 border border-white/10 rounded-xl p-5 flex flex-col items-center text-center relative overflow-hidden"
                             >
-                                <span className="absolute top-2 left-3 text-green-500/30 font-bold italic text-lg">
+                                <span className="absolute top-2 left-3 text-green-400/80 font-bold italic text-lg">
                                     {index + 1}
                                 </span>
                                 <step.icon className="w-6 h-6 text-green-400 mb-3" />
