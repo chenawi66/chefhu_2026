@@ -11,9 +11,6 @@ export default function Home() {
     const [jumpDate, setJumpDate] = useState<string | null>(null);
 
     useEffect(() => {
-        // Force scroll to top on initial load/refresh
-        window.scrollTo(0, 0);
-
         // Initial fetch
         fetch('/api/slots')
             .then(res => res.json())

@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import ScrollToTop from '@/components/ScrollToTop';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-    title: '乙級學徒練工坊 - 頂級宴席預約',
+    title: '乙級學徒練功坊 - 頂級宴席預約',
     description: '體驗嚴選乙級中餐料理的極致美味，專屬的試吃饗宴。',
 };
 
@@ -17,6 +18,7 @@ export default function RootLayout({
     return (
         <html lang="zh-TW" className={inter.variable}>
             <body className="antialiased min-h-screen bg-black text-white selection:bg-green-500 selection:text-white">
+                <ScrollToTop />
                 <main className="relative flex flex-col min-h-screen overflow-hidden">
                     {/* Background Elements */}
                     <div className="fixed inset-0 z-0 opacity-30 pointer-events-none">
@@ -29,7 +31,7 @@ export default function RootLayout({
                     </div>
 
                     <footer className="relative z-10 py-8 text-center text-sm text-gray-500 glass border-t-0">
-                        <p>© 2026 乙級學徒練工坊 | 用心呈現 Traditional Cuisine</p>
+                        <p>© 2026 乙級學徒練功坊 | 用心呈現 Traditional Cuisine</p>
                     </footer>
                 </main>
             </body>
