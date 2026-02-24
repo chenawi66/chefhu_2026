@@ -16,7 +16,7 @@ export default function Hero() {
 
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
 
-            <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
+            <div className="relative z-20 text-center px-4 max-w-4xl mx-auto pt-24 md:pt-0">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -47,8 +47,11 @@ export default function Hero() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.2 + index * 0.1 }}
-                                    className="flex flex-col items-center group"
+                                    className="flex flex-col items-center group relative"
                                 >
+                                    <span className="absolute -top-2 -left-2 text-green-500/40 font-bold italic text-xl select-none">
+                                        {index + 1}
+                                    </span>
                                     <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:bg-green-500/20 group-hover:border-green-500/50 transition-all duration-300 backdrop-blur-sm">
                                         <step.icon className="w-7 h-7 text-green-400 group-hover:scale-110 transition-transform duration-300" />
                                     </div>
@@ -82,8 +85,11 @@ export default function Hero() {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 0.2 + index * 0.1 }}
-                                className="bg-white/5 border border-white/10 rounded-xl p-5 flex flex-col items-center text-center"
+                                className="bg-white/5 border border-white/10 rounded-xl p-5 flex flex-col items-center text-center relative overflow-hidden"
                             >
+                                <span className="absolute top-2 left-3 text-green-500/30 font-bold italic text-lg">
+                                    {index + 1}
+                                </span>
                                 <step.icon className="w-6 h-6 text-green-400 mb-3" />
                                 <div className="text-white text-base font-semibold mb-1">{step.text}</div>
                                 <div className="text-gray-400 text-[11px] leading-tight">{step.sub}</div>
@@ -107,18 +113,6 @@ export default function Hero() {
                     </div>
                 </motion.div>
             </div>
-
-            {/* Decorative Scroll Down */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
-            >
-                <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-2">
-                    <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce" />
-                </div>
-            </motion.div>
         </div>
     );
 }
