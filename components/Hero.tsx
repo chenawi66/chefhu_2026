@@ -30,12 +30,12 @@ export default function Hero() {
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">極致藝術</span>
                     </h1>
                     <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-                        從 105 道官方精選菜色中體驗傳統美味。<br className="md:hidden" />
+                        從 105 道官方精選菜色中體驗傳統美味。<br />
                         邀請您的親朋好友，享受專屬的品鑑時光。
                     </p>
 
                     {/* Booking Process Flowchart */}
-                    <div className="hidden md:flex items-center justify-center gap-4 mb-14 max-w-5xl mx-auto px-4">
+                    <div className="hidden md:flex items-center justify-center gap-2 mb-14 max-w-6xl mx-auto px-4">
                         {[
                             { icon: Users, text: "找尋飯友", sub: "每組 4~6 位" },
                             { icon: Calendar, text: "預約時間", sub: "預約可行時間" },
@@ -47,23 +47,25 @@ export default function Hero() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.2 + index * 0.1 }}
-                                    className="flex flex-col items-center group relative"
+                                    className="flex flex-col items-center group w-48"
                                 >
-                                    <span className="absolute -top-2 -left-2 text-green-400/80 font-bold italic text-xl select-none">
-                                        {index + 1}
-                                    </span>
-                                    <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:bg-green-500/20 group-hover:border-green-500/50 transition-all duration-300 backdrop-blur-sm">
-                                        <step.icon className="w-7 h-7 text-green-400 group-hover:scale-110 transition-transform duration-300" />
+                                    <div className="relative mb-4">
+                                        <span className="absolute -top-3 -left-4 text-green-400 font-bold italic text-2xl select-none group-hover:scale-110 transition-transform duration-300">
+                                            {index + 1}
+                                        </span>
+                                        <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-green-500/20 group-hover:border-green-500/50 transition-all duration-300 backdrop-blur-sm">
+                                            <step.icon className="w-7 h-7 text-green-400 group-hover:scale-110 transition-transform duration-300" />
+                                        </div>
                                     </div>
                                     <div className="text-white font-semibold text-base mb-1.5 whitespace-nowrap">{step.text}</div>
-                                    <div className="text-gray-400 text-xs whitespace-nowrap opacity-80">{step.sub}</div>
+                                    <div className="text-gray-400 text-xs whitespace-normal opacity-80 h-8 flex items-center text-center">{step.sub}</div>
                                 </motion.div>
                                 {index < array.length - 1 && (
                                     <motion.div
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ delay: 0.5 + index * 0.1 }}
-                                        className="mx-4 mb-10"
+                                        className="mb-12"
                                     >
                                         <ChevronRight className="w-6 h-6 text-white/20" />
                                     </motion.div>
